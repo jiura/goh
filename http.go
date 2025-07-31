@@ -33,7 +33,7 @@ Can't add the same header more than once; the one that comes last will be used t
 
 Notice that the body from the http.Response will be closed when this function returns, so the body should only be accessed through the returned string.
 */
-func HttpRequest(method, url string, body []byte, headers map[string]string) (*HttpResponse, error) {
+func HttpRequest(method, url string, headers map[string]string, body []byte) (*HttpResponse, error) {
 	req, err := http.NewRequest(method, url, bytes.NewReader(body))
 	if err != nil {
 		return nil, err
@@ -66,7 +66,7 @@ Can't add the same header more than once; the one that comes last will be used t
 
 Notice that the body from the http.Response will be closed when this function returns, so the body should only be accessed through the returned Json.
 */
-func HttpRequestJson(method, url string, body []byte, headers map[string]string) (*HttpResponseJson, error) {
+func HttpRequestJson(method, url string, headers map[string]string, body []byte) (*HttpResponseJson, error) {
 	resp, err := HttpRequest(method, url, body, headers)
 	if err != nil {
 		return &HttpResponseJson{*resp, nil}, err
