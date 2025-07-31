@@ -31,7 +31,7 @@ Sends an HTTP request. Returns a pointer to a response struct with status, heade
 
 Can't add the same header more than once; the one that comes last will be used to set the value for that key.
 
-Notice that the body from the http.Response will be closed when this function returns, so the body should only be accessed throught the returned string.
+Notice that the body from the http.Response will be closed when this function returns, so the body should only be accessed through the returned string.
 */
 func HttpRequest(method, url string, body []byte, headers map[string]string) (*HttpResponse, error) {
 	req, err := http.NewRequest(method, url, bytes.NewReader(body))
@@ -64,7 +64,7 @@ A JSON body is expected in the response.
 
 Can't add the same header more than once; the one that comes last will be used to set the value for that key.
 
-Notice that the body from the http.Response will be closed when this function returns, so the body should only be accessed throught the returned map[string]string.
+Notice that the body from the http.Response will be closed when this function returns, so the body should only be accessed through the returned Json.
 */
 func HttpRequestJson(method, url string, body []byte, headers map[string]string) (*HttpResponseJson, error) {
 	resp, err := HttpRequest(method, url, body, headers)
