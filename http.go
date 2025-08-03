@@ -67,7 +67,7 @@ Can't add the same header more than once; the one that comes last will be used t
 Notice that the body from the http.Response will be closed when this function returns, so the body should only be accessed through the returned Json.
 */
 func HttpRequestJson(method, url string, headers map[string]string, body []byte) (*HttpResponseJson, error) {
-	resp, err := HttpRequest(method, url, body, headers)
+	resp, err := HttpRequest(method, url, headers, body)
 	if err != nil {
 		return &HttpResponseJson{*resp, nil}, err
 	}
