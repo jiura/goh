@@ -21,12 +21,14 @@ func (j *Json) GetJson(key string) *Json {
 		return nil
 	}
 
-	obj, ok := val.(Json)
+	json_map, ok := val.(map[string]any)
 	if !ok {
 		return nil
 	}
 
-	return &obj
+	json_obj := Json(json_map)
+
+	return &json_obj
 }
 
 func (j *Json) GetArray(key string) JsonArray {
@@ -39,12 +41,12 @@ func (j *Json) GetArray(key string) JsonArray {
 		return nil
 	}
 
-	arr, ok := val.(JsonArray)
+	arr, ok := val.([]any)
 	if !ok {
 		return nil
 	}
 
-	return arr
+	return JsonArray(arr)
 }
 
 func (j *Json) GetString(key string) (string, error) {
@@ -106,12 +108,14 @@ func (ja *JsonArray) JsonAt(index int) *Json {
 		return nil
 	}
 
-	obj, ok := (*ja)[index].(Json)
+	json_map, ok := (*ja)[index].(map[string]any)
 	if !ok {
 		return nil
 	}
 
-	return &obj
+	json_obj := Json(json_map)
+
+	return &json_obj
 }
 
 func (ja *JsonArray) ArrayAt(index int) JsonArray {
@@ -119,12 +123,12 @@ func (ja *JsonArray) ArrayAt(index int) JsonArray {
 		return nil
 	}
 
-	arr, ok := (*ja)[index].(JsonArray)
+	arr, ok := (*ja)[index].([]any)
 	if !ok {
 		return nil
 	}
 
-	return arr
+	return JsonArray(arr)
 }
 
 func (ja *JsonArray) StringAt(index int) (string, error) {
